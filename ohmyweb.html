@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Oh My Web - Resumen Ejecutivo</title>
+  <link rel="stylesheet" href="styles.css">
+  <!-- Librería de iconos de Bootstrap desde Internet -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+</head>
+<body>
+  <!-- Canvas para fondo animado -->
+  <canvas id="bg-canvas"></canvas>
+
+  <!-- Contenido principal -->
+  <div class="content">
+    <header>
+      <div class="logo-container">
+        <!-- Sustitución del logo local por un placeholder desde Internet -->
+        <img 
+          src="Logo-OhMyWeb.png" 
+          alt="Oh My Web Logo"
+        >
+      </div>
+      <!-- Icono en el título del header -->
+      <h1><i class="bi bi-clipboard-data"></i> Resumen Ejecutivo</h1>
+    </header>
+
+    <!-- Hero Section con icono -->
+    <section class="hero">
+      <h2><i class="bi bi-laptop"></i> Bienvenidos a Oh My Web</h2>
+      <p>Innovación digital para transformar tu negocio.</p>
+    </section>
+
+    <!-- Sección con tarjetas alternadas -->
+    <section class="info-section">
+      <div class="info-card left-card">
+        <h3><i class="bi bi-building"></i> Empresa</h3>
+        <p>Desarrollo de páginas web para la gestión de citas y reservas.</p>
+        <!-- Contenido extra que se despliega al hacer hover -->
+        <div class="info-extra">
+          <h4>Detalles adicionales</h4>
+          <ul>
+            <li>Diseño web responsive</li>
+            <li>Integración de calendarios interactivos</li>
+            <li>Soporte y mantenimiento mensual</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="info-card right-card">
+        <h3><i class="bi bi-exclamation-circle"></i> Problema</h3>
+        <p>Falta de herramientas digitales accesibles para pequeñas empresas.</p>
+        <div class="info-extra">
+          <h4>Detalles adicionales</h4>
+          <ul>
+            <li>Reservas gestionadas por teléfono o papel</li>
+            <li>Escasa digitalización en PYMEs</li>
+            <li>Procesos lentos y poca organización</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="info-section reverse">
+      <div class="info-card left-card">
+        <h3><i class="bi bi-lightbulb"></i> Solución</h3>
+        <p>Webs dinámicas con funcionalidades interactivas y pagos en línea.</p>
+        <div class="info-extra">
+          <h4>Detalles adicionales</h4>
+          <ul>
+            <li>Pagos online seguros</li>
+            <li>Notificaciones automáticas</li>
+            <li>Adaptación a cada sector</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="info-card right-card">
+        <h3><i class="bi bi-graph-up"></i> Mercado</h3>
+        <p>PYMEs en sectores como peluquerías, gimnasios y consultorios.</p>
+        <div class="info-extra">
+          <h4>Detalles adicionales</h4>
+          <ul>
+            <li>Enfoque en pequeños negocios</li>
+            <li>Alcance local y nacional</li>
+            <li>Alto potencial de crecimiento</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="info-single">
+      <div class="info-card full-card">
+        <h3><i class="bi bi-people"></i> Competencia</h3>
+        <p>Setmore, SimplyBook.me, Wix y otras plataformas digitales.</p>
+        <div class="info-extra">
+          <h4>Detalles adicionales</h4>
+          <ul>
+            <li>Servicios genéricos no personalizados</li>
+            <li>Falta de mantenimiento continuo</li>
+            <li>Precios menos competitivos al escalar</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Sección de Finanzas con icono -->
+    <section class="finance-section">
+      <h2><i class="bi bi-cash-coin"></i> Inversión y Previsión Financiera</h2>
+      <p>Inversión inicial de 16,000 euros. Proyección de cuenta de resultados:</p>
+      <div class="table-container">
+        <table>
+          <thead>
+            <tr>
+              <th>Año</th>
+              <th>Ventas (€)</th>
+              <th>Gastos (€)</th>
+              <th>Resultado (€)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>1</td>
+              <td>96,300</td>
+              <td>85,977</td>
+              <td>10,323</td>
+            </tr>
+            <tr>
+              <td>2</td>
+              <td>133,800</td>
+              <td>94,018</td>
+              <td>39,782</td>
+            </tr>
+            <tr>
+              <td>3</td>
+              <td>166,700</td>
+              <td>96,751</td>
+              <td>69,949</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </div>
+
+  <!-- Script para fondo animado con canvas -->
+  <script>
+    const canvas = document.getElementById('bg-canvas');
+    const ctx = canvas.getContext('2d');
+    let particles = [];
+    const particleCount = 100;
+
+    // Ajusta el tamaño del canvas
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    class Particle {
+      constructor() {
+        this.x = Math.random() * canvas.width;
+        this.y = Math.random() * canvas.height;
+        this.vx = (Math.random() - 0.5) * 1.5;
+        this.vy = (Math.random() - 0.5) * 1.5;
+        this.size = Math.random() * 3 + 1;
+      }
+      update() {
+        this.x += this.vx;
+        this.y += this.vy;
+        if (this.x < 0 || this.x > canvas.width) this.vx *= -1;
+        if (this.y < 0 || this.y > canvas.height) this.vy *= -1;
+      }
+      draw() {
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+        ctx.fillStyle = 'rgba(255, 255, 255, 0.8)';
+        ctx.fill();
+      }
+    }
+
+    function initParticles() {
+      particles = [];
+      for (let i = 0; i < particleCount; i++) {
+        particles.push(new Particle());
+      }
+    }
+
+    function connectParticles() {
+      for (let a = 0; a < particles.length; a++) {
+        for (let b = a + 1; b < particles.length; b++) {
+          let dx = particles[a].x - particles[b].x;
+          let dy = particles[a].y - particles[b].y;
+          let distance = Math.sqrt(dx * dx + dy * dy);
+          if (distance < 100) {
+            ctx.beginPath();
+            ctx.strokeStyle = 'rgba(255, 255, 255, 0.1)';
+            ctx.lineWidth = 1;
+            ctx.moveTo(particles[a].x, particles[a].y);
+            ctx.lineTo(particles[b].x, particles[b].y);
+            ctx.stroke();
+          }
+        }
+      }
+    }
+
+    function animate() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      particles.forEach(p => {
+        p.update();
+        p.draw();
+      });
+      connectParticles();
+      requestAnimationFrame(animate);
+    }
+
+    window.addEventListener('resize', () => {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+      initParticles();
+    });
+
+    initParticles();
+    animate();
+  </script>
+</body>
+</html>
